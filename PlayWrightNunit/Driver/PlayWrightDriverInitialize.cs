@@ -34,8 +34,9 @@ namespace MagentoFrameworkCore.Driver
             var playwright = await Playwright.CreateAsync();
             Browser = await playwright.Chromium.LaunchAsync(new()
             {
-                Headless = false
-            });
+                Headless = true,
+                SlowMo = 200
+            }) ;
 
             
             return Browser;
