@@ -1,4 +1,4 @@
-using App.Page.Objects.PageObjects;
+using App.Page.Objects.PageObjects.CreateAccountPages;
 using MagentoFrameworkCore.Driver;
 using MagentoFrameworkCore.PageObjects;
 using Microsoft.Playwright;

@@ -8,12 +8,12 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace App.PlaywrightTests
+namespace App.PlaywrightTests.RegisterAccountTests
 {
     [TestFixture]
-    public class CreateAccountTests:BaseTest
+    public class CreateAccountTests : BaseTest
     {
-       
+
         [Test]
         public async Task RegisterAnAccount()
         {
@@ -29,8 +29,8 @@ namespace App.PlaywrightTests
             await Assertions.Expect(createAccountPage._successMsg).ToHaveTextAsync(new Regex("Thank you for registering"));
             await Assertions.Expect(createAccountPage._successMsg).ToHaveTextAsync("Thank you for registering with Main Website Store.");
             Thread.Sleep(1000);
-            
-            
+
+
         }
     }
 }
