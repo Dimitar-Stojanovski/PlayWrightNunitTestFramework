@@ -10,13 +10,18 @@ namespace MagentoFrameworkCore.PageObjects
     public class HomePage
     {
         private readonly IPage page;
-        private ILocator createAccountLink => page.GetByRole(AriaRole.Link, new() { Name = "Create an Account"});
-        private ILocator _mensTabList => page.GetByRole(AriaRole.Menuitem, new() { Name = " Men", Exact = true });
+        private ILocator createAccountLink => 
+            page.GetByRole(AriaRole.Link, new() { Name = "Create an Account"});
+        private ILocator _mensTabList => 
+            page.GetByRole(AriaRole.Menuitem, new() { Name = " Men", Exact = true });
            
 
-        private ILocator _mensTabListTops => page.GetByRole(AriaRole.Menuitem, new() { Name= " Tops", Exact=true});
-        private ILocator _mensTabListTopsJacket => page.GetByRole(AriaRole.Menuitem, new(){Name= "Jackets", Exact = true });
-        private ILocator _firstJacket => page.GetByRole(AriaRole.Link, new() { Name = "Proteus Fitness Jackshirt", Exact = true });
+        private ILocator _mensTabListTops => 
+            page.GetByRole(AriaRole.Menuitem, new() { Name= " Tops", Exact=true});
+        private ILocator _mensTabListTopsJacket => 
+            page.GetByRole(AriaRole.Menuitem, new(){Name= "Jackets", Exact = true });
+        private ILocator _firstJacket => 
+            page.GetByRole(AriaRole.Link, new() { Name = "Proteus Fitness Jackshirt", Exact = true });
 
         public HomePage(IPage page)=>this.page = page;
 

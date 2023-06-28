@@ -1,4 +1,6 @@
-﻿using Microsoft.Playwright;
+﻿using MagentoFrameworkCore.Config;
+using MagentoFrameworkCore.Helpers;
+using Microsoft.Playwright;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,49 +11,62 @@ namespace MagentoFrameworkCore.Driver
 {
     public class PlayWrightDriverInitialize
     {
-        public  IBrowser Browser { get; protected set; }
-        
-        public async Task<IBrowser> InitiatePlaywright(string _browserName)
-        {
-            switch (_browserName)
-            {
-                case"Chromium":
-                    await CreateChromiumBrowser();
-                    break;
-                case"Firefox":
-                    await CreateFireFoxBrowser();
-                    break;
-                default:
-                    await Console.Out.WriteLineAsync("Invalid browser");
-                    break;
-            }
+        public IBrowser Browser { get; protected set; }
 
-            return Browser;
+       
+
+        public async Task<IBrowser> InitiatePlaywright(BrowserTypes browserTypes)
+        {
+            return browserTypes switch
+            {
+                BrowserTypes.Chromium=> await CreateChromiumBrowser(),
+                BrowserTypes.Firefox=>await CreateFireFoxBrowser(),
+                _=> await CreateWebkitBrowser(),
+
+            };
         }
 
         private async Task<IBrowser> CreateChromiumBrowser()
         {
+            var options = BrowserParameters(TestSettings.Headless, TestSettings.Slomo);
+            options.Channel = "chromium";
             var playwright = await Playwright.CreateAsync();
-            Browser = await playwright.Chromium.LaunchAsync(new()
-            {
-                Headless = false,
-                SlowMo = 200
-            }) ;
+            Browser = await playwright.Chromium.LaunchAsync(options);
 
-            
             return Browser;
         }
 
         private async Task<IBrowser> CreateFireFoxBrowser()
         {
+            var options = BrowserParameters(TestSettings.Headless, TestSettings.Slomo);
+            options.Channel = "firefox";
             var playwright = await Playwright.CreateAsync();
-            Browser = await playwright.Firefox.LaunchAsync(new()
-            {
-                Headless = false
-            });
+            Browser = await playwright.Firefox.LaunchAsync(options);
 
-            
+
             return Browser;
         }
+
+        private async Task<IBrowser> CreateWebkitBrowser()
+        {
+            var options = BrowserParameters(TestSettings.Headless, TestSettings.Slomo);
+            options.Channel = "webkit";
+            var playwright = await Playwright.CreateAsync();
+            Browser = await playwright.Webkit.LaunchAsync(options);
+            
+
+
+            return Browser;
+        }
+
+        private BrowserTypeLaunchOptions BrowserParameters(bool?headless, float? slowmo)
+              => new()
+              {
+                  Headless = headless,
+                  SlowMo = slowmo
+              };
+        
+
+
     }
-}
+    } 
