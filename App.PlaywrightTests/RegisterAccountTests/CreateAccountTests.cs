@@ -22,9 +22,9 @@ namespace App.PlaywrightTests.RegisterAccountTests
             await createAccountPage.EnterLastName("Stojanovski1");
             await createAccountPage.ClickSignUpNewsLetterCheckbox();
             Assert.True(await createAccountPage.IsNewsLetterChecked());
-            await createAccountPage.EnterEmail("mai5l@mail.com");
-            await createAccountPage.EnterPassword("Password456&");
-            await createAccountPage.EnterConfirmPassword("Password456&");
+            await createAccountPage.EnterEmail("mai5l3@mail.com");
+            await createAccountPage.EnterPassword("Password456&3");
+            await createAccountPage.EnterConfirmPassword("Password456&3");
             await createAccountPage.ClickCreateAccountBtn();
             await Assertions.Expect(createAccountPage._successMsg).ToHaveTextAsync(new Regex("Thank you for registering"));
             await Assertions.Expect(createAccountPage._successMsg).ToHaveTextAsync("Thank you for registering with Main Website Store.");
