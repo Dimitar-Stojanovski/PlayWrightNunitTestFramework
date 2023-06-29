@@ -1,3 +1,4 @@
+using App.Page.Objects.PageObjects;
 using App.Page.Objects.PageObjects.CreateAccountPages;
 using MagentoFrameworkCore.Config;
 using MagentoFrameworkCore.Driver;
@@ -17,6 +18,7 @@ namespace PlayWrightNunit
         private readonly string _url = TestSettings.ApplicationUrl;
         public HomePage homePage;
         public CreateAccountPage createAccountPage;
+        public ProductPage productPage;
 
         
 
@@ -31,6 +33,7 @@ namespace PlayWrightNunit
             await Task.Run(NavigateToUrl);
             homePage = new HomePage(Page);
             createAccountPage = new CreateAccountPage(Page);
+            productPage = new ProductPage(Page);
             
 
 

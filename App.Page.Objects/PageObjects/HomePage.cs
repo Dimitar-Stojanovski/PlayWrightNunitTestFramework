@@ -20,8 +20,8 @@ namespace MagentoFrameworkCore.PageObjects
             page.GetByRole(AriaRole.Menuitem, new() { Name= " Tops", Exact=true});
         private ILocator _mensTabListTopsJacket => 
             page.GetByRole(AriaRole.Menuitem, new(){Name= "Jackets", Exact = true });
-        private ILocator _firstJacket => 
-            page.GetByRole(AriaRole.Link, new() { Name = "Proteus Fitness Jackshirt", Exact = true });
+        private ILocator _listOfProducts =>
+            page.Locator("//ol[contains(@class,'product-items')]/li");
 
         public HomePage(IPage page)=>this.page = page;
 
@@ -35,7 +35,8 @@ namespace MagentoFrameworkCore.PageObjects
             await _mensTabListTopsJacket.ClickAsync();
         }
 
-        public async Task SelectProductJacket() => await _firstJacket.ClickAsync();
+        public async Task SelectProduct(int index) 
+          => await _listOfProducts.Nth(index).ClickAsync();
 
 
         
