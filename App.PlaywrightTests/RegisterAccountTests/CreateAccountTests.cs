@@ -22,7 +22,7 @@ namespace App.PlaywrightTests.RegisterAccountTests
             await createAccountPage.EnterLastName("Stojanovski1");
             await createAccountPage.ClickSignUpNewsLetterCheckbox();
             Assert.True(await createAccountPage.IsNewsLetterChecked());
-            await createAccountPage.EnterEmail("mai5l34443@mail.com");
+            await createAccountPage.EnterEmail("mai5l3444333213@mail.com");
             await createAccountPage.EnterPassword("Password456&3");
             await createAccountPage.EnterConfirmPassword("Password456&3");
             await createAccountPage.ClickCreateAccountBtn();
