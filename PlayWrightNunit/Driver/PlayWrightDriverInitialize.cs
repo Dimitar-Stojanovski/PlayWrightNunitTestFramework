@@ -63,7 +63,8 @@ namespace MagentoFrameworkCore.Driver
               => new()
               {
                   Headless = headless,
-                  SlowMo = slowmo
+                  SlowMo = slowmo,
+                  
               };
         
 

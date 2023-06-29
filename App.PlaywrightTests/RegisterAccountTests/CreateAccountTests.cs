@@ -1,31 +1,28 @@
-﻿using MagentoFrameworkCore.PageObjects;
+﻿using MagentoFrameworkCore.Helpers;
 using Microsoft.Playwright;
 using PlayWrightNunit;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace App.PlaywrightTests.RegisterAccountTests
 {
     [TestFixture]
     public class CreateAccountTests : BaseTest
     {
+        private readonly string genericMail = RandomStringGenerator.GenerateRandomString(7);
 
-        [Test]
-        public async Task RegisterAnAccount()
+        [TestCase("John","Doe","Password1234")]
+        public async Task RegisterAnAccount(string firstName,string lastName,string password)
         {
             await homePage.ClickCreateAccountLink();
-            await createAccountPage.EnterFirstName("Dimitar1");
-            await createAccountPage.EnterLastName("Stojanovski1");
+            await createAccountPage.EnterFirstName(firstName);
+            await createAccountPage.EnterLastName(lastName);
             await createAccountPage.ClickSignUpNewsLetterCheckbox();
             Assert.True(await createAccountPage.IsNewsLetterChecked());
-            await createAccountPage.EnterEmail("mailmail1234@mail.com");
-            await createAccountPage.EnterPassword("Password456&3");
-            await createAccountPage.EnterConfirmPassword("Password456&3");
+            await createAccountPage.EnterEmail(genericMail);
+            await createAccountPage.EnterPassword(password);
+            await createAccountPage.EnterConfirmPassword(password);
             await createAccountPage.ClickCreateAccountBtn();
+            Thread.Sleep(TimeSpan.FromSeconds(4));
             await Assertions.Expect(createAccountPage._successMsg).ToHaveTextAsync(new Regex("Thank you for registering"));
             await Assertions.Expect(createAccountPage._successMsg).ToHaveTextAsync("Thank you for registering with Main Website Store.");
             Thread.Sleep(1000);

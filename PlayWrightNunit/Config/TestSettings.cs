@@ -9,7 +9,7 @@ namespace MagentoFrameworkCore.Config
     public static class TestSettings
     {
         public static string ApplicationUrl { get; set; } = "https://magento.softwaretestingboard.com/";
-        public static bool? Headless { get; set; } = true;
+        public static bool? Headless { get; set; } = false;
         public static float? Slomo { get; set; } = 200;
     }
 }
