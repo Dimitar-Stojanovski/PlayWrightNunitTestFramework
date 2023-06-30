@@ -49,5 +49,9 @@ namespace App.Page.Objects.PageObjects.CreateAccountPages
         public async Task ClickCreateAccountBtn()
             => await _createAccountBtn.ClickAsync();
 
+        public async Task<bool> VerifyTheMsgIsVisible()
+            =>await _successMsg.IsVisibleAsync();
+
+        
     }
 }
