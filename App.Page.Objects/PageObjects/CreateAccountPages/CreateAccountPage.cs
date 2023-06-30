@@ -50,7 +50,7 @@ namespace App.Page.Objects.PageObjects.CreateAccountPages
             => await _createAccountBtn.ClickAsync();
 
         public async Task<bool> VerifyMyAccountHeaderIsPresent()
-            =>await _myAccountHeader.IsVisibleAsync();
+            =>await _myAccountHeader.IsVisibleAsync(new() { Timeout=10000});
 
         
     }
