@@ -17,7 +17,7 @@ namespace App.Page.Objects.PageObjects.CreateAccountPages
         private ILocator _passwordField => _page.Locator("#password");
         private ILocator _confirmPasswordField => _page.GetByRole(AriaRole.Textbox, new() { Name = "Confirm Password" });
         private ILocator _createAccountBtn => _page.GetByRole(AriaRole.Button, new() { Name = "Create an Account" });
-        public ILocator _successMsg => _page.Locator("//*[contains(@class,'success message')]/div");
+        public ILocator _myAccountHeader => _page.GetByRole(AriaRole.Heading, new() { Name="My Account",Exact=true});
 
         private ILocator _newsLetterCheckBox => _page.GetByRole(AriaRole.Checkbox, new() { NameString = "Newsletter" });
         public CreateAccountPage(IPage page)
@@ -49,8 +49,8 @@ namespace App.Page.Objects.PageObjects.CreateAccountPages
         public async Task ClickCreateAccountBtn()
             => await _createAccountBtn.ClickAsync();
 
-        public async Task<bool> VerifyTheMsgIsVisible()
-            =>await _successMsg.IsVisibleAsync();
+        public async Task<bool> VerifyMyAccountHeaderIsPresent()
+            =>await _myAccountHeader.IsVisibleAsync();
 
         
     }

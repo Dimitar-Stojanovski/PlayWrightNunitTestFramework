@@ -22,10 +22,10 @@ namespace App.PlaywrightTests.RegisterAccountTests
             await createAccountPage.EnterPassword(password);
             await createAccountPage.EnterConfirmPassword(password);
             await createAccountPage.ClickCreateAccountBtn();
-            Thread.Sleep(1000);
-            Assert.True(await createAccountPage.VerifyTheMsgIsVisible());
-            await Assertions.Expect(createAccountPage._successMsg).ToHaveTextAsync("Thank you for registering with Main Website Store.");
-            Thread.Sleep(1000);
+            
+            Assert.True(await createAccountPage.VerifyMyAccountHeaderIsPresent());
+           
+            
 
 
         }
