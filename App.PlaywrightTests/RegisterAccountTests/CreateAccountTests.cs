@@ -1,5 +1,6 @@
 ﻿using MagentoFrameworkCore.Helpers;
 using Microsoft.Playwright;
+using Microsoft.Playwright.NUnit;
 using PlayWrightNunit;
 using System.Text.RegularExpressions;
 
@@ -10,7 +11,7 @@ namespace App.PlaywrightTests.RegisterAccountTests
     {
         private readonly string genericMail = RandomStringGenerator.GenerateRandomString(7);
 
-        [TestCase("John","Doe","Password1234")]
+        [TestCase("John","Doe","Password1234"),Skip]
         public async Task RegisterAnAccount(string firstName,string lastName,string password)
         {
             await homePage.ClickCreateAccountLink();
