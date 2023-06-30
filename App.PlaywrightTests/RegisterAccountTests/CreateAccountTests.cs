@@ -22,8 +22,8 @@ namespace App.PlaywrightTests.RegisterAccountTests
             await createAccountPage.EnterPassword(password);
             await createAccountPage.EnterConfirmPassword(password);
             await createAccountPage.ClickCreateAccountBtn();
-            Thread.Sleep(TimeSpan.FromSeconds(4));
-            await Assertions.Expect(createAccountPage._successMsg).ToHaveTextAsync(new Regex("Thank you for registering"));
+            
+            //await Assertions.Expect(createAccountPage._successMsg).ToHaveTextAsync(new Regex("Thank you for registering"));
             await Assertions.Expect(createAccountPage._successMsg).ToHaveTextAsync("Thank you for registering with Main Website Store.");
             Thread.Sleep(1000);
 

@@ -17,7 +17,7 @@ namespace App.Page.Objects.PageObjects.CreateAccountPages
         private ILocator _passwordField => _page.Locator("#password");
         private ILocator _confirmPasswordField => _page.GetByRole(AriaRole.Textbox, new() { Name = "Confirm Password" });
         private ILocator _createAccountBtn => _page.GetByRole(AriaRole.Button, new() { Name = "Create an Account" });
-        public ILocator _successMsg => _page.Locator(".message-success");
+        public ILocator _successMsg => _page.Locator("//*[contains(@class,'success message')]/div");
 
         private ILocator _newsLetterCheckBox => _page.GetByRole(AriaRole.Checkbox, new() { NameString = "Newsletter" });
         public CreateAccountPage(IPage page)
