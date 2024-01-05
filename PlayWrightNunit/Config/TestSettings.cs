@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MagentoFrameworkCore.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace MagentoFrameworkCore.Config
 {
-    public static class TestSettings
+    public  class TestSettings
     {
-        public static string ApplicationUrl { get; set; } = "https://magento.softwaretestingboard.com/";
-        public static bool? Headless { get; set; } = true;
-        public static float? Slomo { get; set; } = 200;
+        public BrowserTypes DriverType { get; set; }
+        public  string ApplicationUrl { get; set; } = "https://magento.softwaretestingboard.com/";
+        public  bool? Headless { get; set; } = true;
+        public  float? Slomo { get; set; } = 200;
     }
 }

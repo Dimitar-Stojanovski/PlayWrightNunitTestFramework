@@ -15,7 +15,7 @@ namespace PlayWrightNunit
         private  Task<IBrowser> _browser;
         private  Task<IPage> _page;
 
-        private readonly string _url = TestSettings.ApplicationUrl;
+        TestSettings testSettings = ConfigReader.ReadConfig();
         public HomePage homePage;
         public CreateAccountPage createAccountPage;
         public ProductPage productPage;
@@ -42,7 +42,7 @@ namespace PlayWrightNunit
         private async Task<IBrowser> InitiatePlaywright()
         {
             _driverInitializer = new PlayWrightDriverInitialize();
-            _browser =  _driverInitializer.InitiatePlaywright(BrowserTypes.Chromium);
+            _browser =  _driverInitializer.InitiatePlaywright(testSettings);
             return await _browser;
         }
 
@@ -53,7 +53,7 @@ namespace PlayWrightNunit
 
         private async Task NavigateToUrl()
         {
-            await Page.GotoAsync(_url);
+            await Page.GotoAsync(testSettings.ApplicationUrl);
         }
 
         public void Dispose()

@@ -15,20 +15,20 @@ namespace MagentoFrameworkCore.Driver
 
        
 
-        public async Task<IBrowser> InitiatePlaywright(BrowserTypes browserTypes)
+        public async Task<IBrowser> InitiatePlaywright(TestSettings testSettings)
         {
-            return browserTypes switch
+            return testSettings.DriverType switch
             {
-                BrowserTypes.Chromium=> await CreateChromiumBrowser(),
-                BrowserTypes.Firefox=>await CreateFireFoxBrowser(),
-                _=> await CreateWebkitBrowser(),
+                BrowserTypes.Chromium=> await CreateChromiumBrowser(testSettings),
+                BrowserTypes.Firefox=>await CreateFireFoxBrowser(testSettings),
+                _=> await CreateWebkitBrowser(testSettings),
 
             };
         }
 
-        private async Task<IBrowser> CreateChromiumBrowser()
+        private async Task<IBrowser> CreateChromiumBrowser(TestSettings testSettings)
         {
-            var options = BrowserParameters(TestSettings.Headless, TestSettings.Slomo);
+            var options = BrowserParameters(testSettings.Headless,testSettings.Slomo);
             options.Channel = "chromium";
             var playwright = await Playwright.CreateAsync();
             Browser = await playwright.Chromium.LaunchAsync(options);
@@ -36,9 +36,9 @@ namespace MagentoFrameworkCore.Driver
             return Browser;
         }
 
-        private async Task<IBrowser> CreateFireFoxBrowser()
+        private async Task<IBrowser> CreateFireFoxBrowser(TestSettings testSettings)
         {
-            var options = BrowserParameters(TestSettings.Headless, TestSettings.Slomo);
+            var options = BrowserParameters(testSettings.Headless, testSettings.Slomo);
             options.Channel = "firefox";
             var playwright = await Playwright.CreateAsync();
             Browser = await playwright.Firefox.LaunchAsync(options);
@@ -47,9 +47,9 @@ namespace MagentoFrameworkCore.Driver
             return Browser;
         }
 
-        private async Task<IBrowser> CreateWebkitBrowser()
+        private async Task<IBrowser> CreateWebkitBrowser(TestSettings testSettings)
         {
-            var options = BrowserParameters(TestSettings.Headless, TestSettings.Slomo);
+            var options = BrowserParameters(testSettings.Headless, testSettings.Slomo);
             options.Channel = "webkit";
             var playwright = await Playwright.CreateAsync();
             Browser = await playwright.Webkit.LaunchAsync(options);
